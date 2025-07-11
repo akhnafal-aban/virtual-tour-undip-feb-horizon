@@ -18,11 +18,12 @@ export default function PanoramaViewer({ room, onHotspotClick }) {
         setIsLoading(true);
         setError(null);
 
-        // Dynamically import Panolens and Three.js
-        const [PANOLENS, THREE] = await Promise.all([
-          import('panolens'),
-          import('three')
-        ]);
+        // Use global PANOLENS and THREE from CDN scripts
+        const PANOLENS = window.PANOLENS;
+        const THREE = window.THREE;
+        if (!PANOLENS || !THREE) {
+          throw new Error('PANOLENS or THREE is not loaded.');
+        }
 
         // Clear previous viewer
         if (viewerRef.current) {
