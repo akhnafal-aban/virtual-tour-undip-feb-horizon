@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Building2, MapPin, Eye } from 'lucide-react';
+import { ArrowLeft, Building2, MapPin, Eye, Menu, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { campusBuildings } from '@/data/campusData';
@@ -16,6 +16,7 @@ export default function BuildingDetail() {
   const [building, setBuilding] = useState(null);
   const [currentRoom, setCurrentRoom] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const foundBuilding = campusBuildings.find(b => b.id === buildingId);
@@ -52,7 +53,7 @@ export default function BuildingDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Building not found</h1>
-          <Button onClick={() => navigate('/')}>
+          <Button onClick={() => navigate('/')}> 
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Campus
           </Button>
@@ -70,8 +71,15 @@ export default function BuildingDetail() {
 
       <div className="min-h-screen relative">
         {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-50 p-4">
-          <div className="flex items-center justify-between">
+        <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
+        {/* Hamburger (Menu) icon for mobile */}
+        <div className="flex items-center gap-2">
+          <div className="md:hidden">
+            <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass">
+              <Menu className="w-6 h-6 text-white" />
+            </Button>
+          </div>
+          <div className="hidden md:block">
             <Button
               variant="ghost"
               onClick={() => navigate('/')}
@@ -80,11 +88,19 @@ export default function BuildingDetail() {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Campus
             </Button>
-            
-            <div className="glass rounded-lg px-4 py-2">
-              <h1 className="text-lg font-bold text-white">{building.name}</h1>
-            </div>
           </div>
+        </div>
+        <div className="glass rounded-lg px-4 py-2">
+          <h1 className="text-lg font-bold text-white">{building.name}</h1>
+        </div>
+        {/* Home icon for mobile (show only if sidebar is closed) */}
+        <div className="md:hidden">
+          {!sidebarOpen && (
+            <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass">
+              <Home className="w-6 h-6 text-white" />
+            </Button>
+          )}
+        </div>
         </header>
 
         {/* Sub-buildings Section (if any) */}
@@ -117,6 +133,8 @@ export default function BuildingDetail() {
             rooms={building.rooms}
             currentRoom={currentRoom}
             onRoomChange={handleRoomChange}
+            isOpen={sidebarOpen || window.innerWidth >= 768}
+            onClose={() => setSidebarOpen(false)}
           />
         )}
 
