@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -53,7 +52,7 @@ export default function BuildingDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Building not found</h1>
-          <Button onClick={() => navigate('/')}> 
+          <Button onClick={() => navigate('/')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Campus
           </Button>
@@ -65,48 +64,48 @@ export default function BuildingDetail() {
   return (
     <>
       <Helmet>
-        <title>{building.name} - Virtual Campus Tour</title>
-        <meta name="description" content={`Explore ${building.name} in 360° panoramic view. ${building.description}`} />
+        <title>Journey Of Economics</title>
+        <meta name="description" content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
       </Helmet>
 
       <div className="min-h-screen relative">
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
-        {/* Hamburger (Menu) icon for mobile */}
-        <div className="flex items-center gap-2">
+          {/* Hamburger (Menu) icon for mobile */}
+          <div className="flex items-center gap-2">
+            <div className="md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass bg-black/50">
+                <Menu className="w-6 h-6 text-white" />
+              </Button>
+            </div>
+            <div className="hidden md:block">
+              <Button
+                variant="ghost"
+                onClick={() => navigate('/')}
+                className="glass bg-black/80 text-white hover:bg-white/20"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Campus
+              </Button>
+            </div>
+          </div>
+          <div className="glass bg-black/50 rounded-lg px-4 py-2">
+            <h1 className="text-lg font-bold text-white">{building.name}</h1>
+          </div>
+          {/* Home icon for mobile (show only if sidebar is closed) */}
           <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass">
-              <Menu className="w-6 h-6 text-white" />
-            </Button>
+            {!sidebarOpen && (
+              <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass bg-black/50">
+                <Home className="w-6 h-6 text-white" />
+              </Button>
+            )}
           </div>
-          <div className="hidden md:block">
-            <Button
-              variant="ghost"
-              onClick={() => navigate('/')}
-              className="glass text-white hover:bg-white/20"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Campus
-            </Button>
-          </div>
-        </div>
-        <div className="glass rounded-lg px-4 py-2">
-          <h1 className="text-lg font-bold text-white">{building.name}</h1>
-        </div>
-        {/* Home icon for mobile (show only if sidebar is closed) */}
-        <div className="md:hidden">
-          {!sidebarOpen && (
-            <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass">
-              <Home className="w-6 h-6 text-white" />
-            </Button>
-          )}
-        </div>
         </header>
 
         {/* Sub-buildings Section (if any) */}
         {building.subBuildings && building.subBuildings.length > 0 && (
-          <div className="absolute top-20 left-4 z-40">
-            <div className="glass rounded-lg p-4 max-w-sm">
+          <div className="absolute top-20 left-4 right-4 z-40">
+            <div className="glass bg-black/50 rounded-lg p-4 max-w-sm">
               <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
                 <Building2 className="w-4 h-4" />
                 Sub-buildings
@@ -140,10 +139,12 @@ export default function BuildingDetail() {
 
         {/* Panorama Viewer */}
         {currentRoom ? (
-          <PanoramaViewer
-            room={currentRoom}
-            onHotspotClick={handleRoomChange}
-          />
+          <div className="absolute inset-0 z-10">
+            <PanoramaViewer
+              room={currentRoom}
+              onHotspotClick={handleRoomChange}
+            />
+          </div>
         ) : (
           <div className="min-h-screen flex items-center justify-center">
             <motion.div

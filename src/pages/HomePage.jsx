@@ -1,4 +1,4 @@
-
+import { colorPalette } from '@/data/colorData';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -16,13 +16,13 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Virtual Campus Tour - Explore Our University</title>
-        <meta name="description" content="Take an immersive virtual tour of our beautiful campus. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
+        <title>Journey Of Economics</title>
+        <meta name="description" content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
       </Helmet>
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-20 px-4">
+        <section className="relative overflow-hidden py-10 px-4">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
           <div className="relative max-w-7xl mx-auto text-center">
             <motion.div
@@ -30,26 +30,14 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
+              <img
+                src="/images/logo.PNG"
+                alt="Logo Acara FEB"
+                className="mx-auto mb-8 w-40 h-40 object-contain"
+              />
               <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-                Virtual Campus Tour
+                Journey Of Economics
               </h1>
-              <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Explore our stunning campus from anywhere in the world with immersive 360° panoramic views
-              </p>
-              <div className="flex flex-wrap justify-center gap-6 text-blue-200">
-                <div className="flex items-center gap-2">
-                  <Building2 className="w-5 h-5" />
-                  <span>Interactive Buildings</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>360° Views</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  <span>Virtual Navigation</span>
-                </div>
-              </div>
             </motion.div>
           </div>
         </section>
@@ -64,10 +52,10 @@ export default function HomePage() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl font-bold mb-4 text-white">
-                Explore Campus Buildings
+                Explore Now!
               </h2>
               <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-                Click on any building to start your immersive virtual tour experience
+                Click on any building to start
               </p>
             </motion.div>
 
@@ -137,11 +125,11 @@ export default function HomePage() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl font-bold mb-4 text-white">
-                Immersive Experience Features
+                About Us
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   icon: MapPin,
@@ -177,7 +165,7 @@ export default function HomePage() {
                   </p>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
