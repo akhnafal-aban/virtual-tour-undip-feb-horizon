@@ -40,7 +40,7 @@ export default function PanoramaViewer({ room, onHotspotClick }) {
         // Add hotspots
         if (room.hotspots && room.hotspots.length > 0) {
           room.hotspots.forEach((hotspot) => {
-            const hotspotElement = new PANOLENS.Infospot(350, 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=100&h=100&fit=crop');
+            const hotspotElement = new PANOLENS.Infospot(5, 'images/hotspot-arrow-up.png');
             hotspotElement.position.set(hotspot.position.x, hotspot.position.y, hotspot.position.z);
             hotspotElement.addHoverText(hotspot.label);
             

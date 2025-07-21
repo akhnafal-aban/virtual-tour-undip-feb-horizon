@@ -30,7 +30,7 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/icons/logo.png"
+                src="/icons/logo.PNG"
                 alt="Logo Acara FEB"
                 className="mx-auto mb-8 w-40 h-40 object-contain"
               />
