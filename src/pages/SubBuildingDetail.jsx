@@ -59,8 +59,8 @@ export default function SubBuildingDetail() {
   return (
     <>
       <Helmet>
-        <title>{subBuilding.name} - Virtual Campus Tour</title>
-        <meta name="description" content={`Explore ${subBuilding.name} in 360° panoramic view. ${subBuilding.description}`} />
+        <title>Journey Of Economics</title>
+        <meta name="description" content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
       </Helmet>
 
       <div className="min-h-screen relative">
