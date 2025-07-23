@@ -153,8 +153,7 @@ const PanoramaViewer = ({ room, onHotspotClick, height = 500 }) => {
         ref={viewerRef}
         style={{
           width: "100%",
-          height,
-          borderRadius: "16px",
+          height: "100%",
           overflow: "hidden",
         }}
       />
