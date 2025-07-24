@@ -32,6 +32,25 @@ export default function BuildingDetail() {
     const room = building.rooms.find(r => r.id === roomId);
     if (room) {
       setCurrentRoom(room);
+    } else {
+      // Cari di seluruh campusBuildings
+      for (const b of campusBuildings) {
+        const targetRoom = b.rooms.find(r => r.id === roomId);
+        if (targetRoom) {
+          // Pindah ke gedung target dan set room
+          navigate(`/building/${b.id}`);
+          // Delay setCurrentRoom agar building sudah update
+          setTimeout(() => {
+            setCurrentRoom(targetRoom);
+          }, 100);
+          return;
+        }
+      }
+      // Jika tidak ditemukan, bisa tampilkan toast/error
+      toast({
+        title: "Room tidak ditemukan",
+        description: "Hotspot mengarah ke ruangan yang tidak tersedia.",
+      });
     }
   };
 
