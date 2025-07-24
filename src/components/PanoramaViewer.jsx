@@ -15,14 +15,21 @@ function convertHotspots(hotspots) {
       if (typeof h.x === "number" && typeof h.y === "number") {
         const longitude = h.x * 2 * Math.PI;
         const latitude = (h.y - 0.5) * Math.PI;
-        console.log(`[Hotspot DEBUG] [${h.label}] xy:`, h.x, h.y, '-> long:', longitude, 'lat:', latitude);
         return {
           id: `hotspot-${i}`,
           longitude,
           latitude,
           tooltip: h.label,
           data: { target: h.targetRoom || h.target },
-          html: `<img src='/icons/hotspot-arrow-up.png' alt='hotspot' style='width:36px;height:36px;object-fit:contain;' />`,
+          html: `
+            <svg width="64" height="64" viewBox="0 0 64 64" style="display:block;">
+              <circle cx="32" cy="32" r="30" fill="rgba(220,220,220,0.7)" stroke="#fff" stroke-width="4"/>
+              <path d="M20 38 L32 26 L44 38 Q32 34 20 38 Z" fill="#222" stroke="#222" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          `,
+          width: 64,
+          height: 64,
+          anchor: "center center",
         };
       }
       // Jika x/y/z (THREE), konversi ke spherical
@@ -30,22 +37,27 @@ function convertHotspots(hotspots) {
         const { x, y, z } = h.position;
         const r = Math.sqrt(x * x + y * y + z * z);
         if (!r || isNaN(r)) {
-          console.warn(`[Hotspot DEBUG] [${h.label}] Invalid position:`, h.position);
           return null;
         }
         const longitude = Math.atan2(x, z);
         const latitude = Math.acos(y / r) - Math.PI / 2;
-        console.log(`[Hotspot DEBUG] [${h.label}] xyz:`, x, y, z, '-> long:', longitude, 'lat:', latitude);
         return {
           id: `hotspot-${i}`,
           longitude,
           latitude,
           tooltip: h.label,
           data: { target: h.targetRoom || h.target },
-          html: `<img src='/icons/hotspot-arrow-up.png' alt='hotspot' style='width:36px;height:36px;object-fit:contain;' />`,
+          html: `
+            <svg width="64" height="64" viewBox="0 0 64 64" style="display:block;">
+              <circle cx="32" cy="32" r="30" fill="rgba(220,220,220,0.7)" stroke="#fff" stroke-width="4"/>
+              <path d="M20 38 L32 26 L44 38 Q32 34 20 38 Z" fill="#222" stroke="#222" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          `,
+          width: 64,
+          height: 64,
+          anchor: "center center",
         };
       }
-      console.warn(`[Hotspot DEBUG] [${h.label}] No valid position or xy`);
       return null;
     })
     .filter(Boolean);
