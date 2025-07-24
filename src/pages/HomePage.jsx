@@ -74,7 +74,7 @@ export default function HomePage() {
                       <img  
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         alt={`${building.name} exterior view`}
-                       src="https://images.unsplash.com/photo-1686829613628-3e4ebe6f27e7" />
+                        src={building.thumbnail || "/images/logo.PNG"} />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                       <div className="absolute top-4 right-4">
                         <div className="glass rounded-full p-2">

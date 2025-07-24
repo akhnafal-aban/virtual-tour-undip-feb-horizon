@@ -39,14 +39,6 @@ export default function BuildingDetail() {
     navigate(`/building/${buildingId}/sub/${subBuildingId}`);
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="loading-spinner"></div>
-      </div>
-    );
-  }
-
   if (!building) {
     return (
       <div className="min-h-screen flex items-center justify-center">

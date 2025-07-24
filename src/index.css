@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,4 +88,20 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Override background loading photo-sphere-viewer */
+.psv-container,
+.psv-overlay,
+.psv-loader-container {
+  background: rgba(15,23,42,0.95) !important; /* sesuai tema dark Anda */
+}
+
+.psv-loader {
+  color: #60a5fa !important; /* warna spinner */
+  border-color: transparent !important;
+}
+
+.psv-loader-text {
+  color: #60a5fa !important;
 }
