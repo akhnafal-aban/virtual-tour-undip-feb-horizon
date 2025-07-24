@@ -148,14 +148,29 @@ export default function BuildingDetail() {
           />
         )}
 
-        {/* Panorama Viewer */}
+        {/* Room Content: Video or Panorama */}
         {currentRoom ? (
-          <div className="absolute inset-0 z-10">
-            <PanoramaViewer
-              room={currentRoom}
-              onHotspotClick={handleRoomChange}
-            />
-          </div>
+          currentRoom.video ? (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-black">
+              <video
+                width="100%"
+                height="100%"
+                controls
+                style={{ maxHeight: '100vh', maxWidth: '100vw', background: 'black' }}
+                poster={currentRoom.panorama || undefined}
+              >
+                <source src={currentRoom.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          ) : (
+            <div className="absolute inset-0 z-10">
+              <PanoramaViewer
+                room={currentRoom}
+                onHotspotClick={handleRoomChange}
+              />
+            </div>
+          )
         ) : (
           <div className="min-h-screen flex items-center justify-center">
             <motion.div

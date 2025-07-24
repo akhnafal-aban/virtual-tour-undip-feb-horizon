@@ -73,7 +73,15 @@ export const campusBuildings = [
         panorama: "/images/original/Gedung A.jpg",
         hotspots: [
           { id: "to-lobby-akuntansi", position: { x: 160, y: 0, z: 60 }, targetRoom: "lobby-akuntansi", label: "Gedung B" },
+        ],      },
+      {
+        id: "video-gedung-a",
+        name: "Video Gedung A",
+        panorama: "/images/original/Gedung A.jpg",
+        hotspots: [
+          { id: "to-lobby-akuntansi", position: { x: 160, y: 0, z: 60 }, targetRoom: "lobby-akuntansi", label: "Gedung B" },
         ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+A.mp4",
       },
     ],
   },
@@ -98,6 +106,7 @@ export const campusBuildings = [
         name: "Kemenkeu (Video)",
         panorama: null, // Video, tidak ada panorama
         hotspots: [],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+B.mp4",
       },
     ],
   },
@@ -116,6 +125,15 @@ export const campusBuildings = [
         hotspots: [
           { id: "to-hall", position: { x: 400, y: 0, z: -180 }, targetRoom: "hall-gedung-c", label: "Hall Gedung C" },
         ],
+      },
+      {
+        id: "video-gedung-c",
+        name: "Video Gedung C",
+        panorama: "/images/original/Gedung C.jpg",
+        hotspots: [
+          { id: "to-hall", position: { x: 400, y: 0, z: -180 }, targetRoom: "hall-gedung-c", label: "Hall Gedung C" },
+        ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+C.mp4",
       },
       {
         id: "hall-gedung-c",
@@ -160,6 +178,15 @@ export const campusBuildings = [
         ],
       },
       {
+        id: "video-gedung-iup",
+        name: "Video Gedung IUP",
+        panorama: "/images/original/Perpustakaan.jpg",
+        hotspots: [
+          { id: "to-digilib", position: { x: 80, y: 0, z: 60 }, targetRoom: "digilib", label: "Digilib" },
+        ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+IUP.mp4",
+      },
+      {
         id: "digilib",
         name: "Digilib",
         panorama: "/images/original/Digilib Gedung IUP.jpg",
@@ -198,6 +225,13 @@ export const campusBuildings = [
         name: "Auditorium Lab KWU (Video)",
         panorama: null, // Video, tidak ada panorama
         hotspots: [],
+      },
+      {
+        id: "video-gedung-kwu",
+        name: "Video Gedung Lab KWU",
+        panorama: null,
+        hotspots: [],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+Lab+KWU.mp4",
       },
       {
         id: "inspiration-space",
