@@ -5,6 +5,13 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Building2, Users, Star } from 'lucide-react';
 import { campusBuildings } from '@/data/campusData';
+import { logoList } from '@/data/LogoList';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import SwiperCore from 'swiper';
+import { Autoplay } from 'swiper/modules';
+SwiperCore.use([Autoplay]);
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -71,7 +78,7 @@ export default function HomePage() {
                 >
                   <div className="glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25">
                     <div className="relative overflow-hidden">
-                      <img  
+                      <img
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         alt={`${building.name} exterior view`}
                         src={building.thumbnail || "/images/logo.PNG"} />
@@ -82,7 +89,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
                         {building.name}
@@ -90,7 +97,7 @@ export default function HomePage() {
                       <p className="text-blue-200 text-sm mb-4 line-clamp-2">
                         {building.description}
                       </p>
-                      
+
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-blue-300">
                           <Building2 className="w-4 h-4" />
@@ -124,9 +131,62 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-4 text-white">
-                About Us
-              </h2>
+              <h2 className="text-4xl font-bold mb-4 text-white">Logo Ormawa</h2>
+              <div className="overflow-hidden w-full mb-8">
+                <Swiper
+                  slidesPerView={6}
+                  spaceBetween={32}
+                  loop={true}
+                  autoplay={{ delay: 0, disableOnInteraction: false }}
+                  speed={4000}
+                  allowTouchMove={false}
+                  style={{ width: '100%' }}
+                  breakpoints={{
+                    0: { slidesPerView: 3 },
+                    640: { slidesPerView: 4 },
+                    1024: { slidesPerView: 6 }
+                  }}
+                >
+                  {(logoList.find(l => l.folder.includes('Logo Ormawa'))?.logos || []).map((logo, idx) => (
+                    <SwiperSlide key={logo + '-' + idx}>
+                      <img
+                        src={`/images/Logo Ormawa/${logo}`}
+                        alt={logo}
+                        className="h-40 w-auto rounded-xl p-2"
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+              <h2 className="text-4xl font-bold mb-4 text-white">Logo UKM</h2>
+              <div className="overflow-hidden w-full mb-8">
+                <Swiper
+                  slidesPerView={6}
+                  spaceBetween={32}
+                  loop={true}
+                  autoplay={{ delay: 0, reverseDirection: true, disableOnInteraction: false }}
+                  speed={4000}
+                  allowTouchMove={false}
+                  style={{ width: '100%' }}
+                  breakpoints={{
+                    0: { slidesPerView: 3 },
+                    640: { slidesPerView: 4 },
+                    1024: { slidesPerView: 6 }
+                  }}
+                >
+                  {(logoList.find(l => l.folder.includes('Logo UKM'))?.logos || []).map((logo, idx) => (
+                    <SwiperSlide key={logo + '-' + idx}>
+                      <img
+                        src={`/images/Logo UKM/${logo}`}
+                        alt={logo}
+                        className="h-40 w-auto rounded-xl p-2"
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </motion.div>
 
             {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

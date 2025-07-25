@@ -67,13 +67,15 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
                       whileTap={{ scale: 0.98 }}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-lg ${
-                          currentRoom?.id === room.id
-                            ? 'bg-blue-500/30'
-                            : 'bg-white/10'
-                        }`}>
-                          <Eye className="w-4 h-4 text-white" />
-                        </div>
+                        {room.thumbnail || room.image || room.panorama ? (
+                          <img
+                            src={room.thumbnail || room.image || room.panorama}
+                            alt={room.name}
+                            className="w-20 h-16 object-cover rounded-lg border border-white/10"
+                          />
+                        ) : (
+                          <div className="w-20 h-16 bg-blue-400/30 rounded-lg" />
+                        )}
                         <div className="flex-1">
                           <h3 className="font-semibold text-white text-sm">
                             {room.name}

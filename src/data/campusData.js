@@ -73,7 +73,8 @@ export const campusBuildings = [
         panorama: "/images/original/Gedung A.jpg",
         hotspots: [
           { id: "to-lobby-akuntansi", position: { x: 160, y: 0, z: 60 }, targetRoom: "lobby-akuntansi", label: "Gedung B" },
-        ],      },
+        ],
+      },
       {
         id: "video-gedung-a",
         name: "Video Gedung A",
@@ -221,17 +222,17 @@ export const campusBuildings = [
     // subBuildings: [],
     rooms: [
       {
-        id: "auditorium-lab-kwu",
-        name: "Auditorium Lab KWU (Video)",
-        panorama: null, // Video, tidak ada panorama
-        hotspots: [],
-      },
-      {
         id: "video-gedung-kwu",
         name: "Video Gedung Lab KWU",
         panorama: null,
         hotspots: [],
         video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+Lab+KWU.mp4",
+      },
+      {
+        id: "auditorium-lab-kwu",
+        name: "Auditorium Lab KWU (Video)",
+        panorama: null, // Video, tidak ada panorama
+        hotspots: [],
       },
       {
         id: "inspiration-space",

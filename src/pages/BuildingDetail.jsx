@@ -58,10 +58,10 @@ export default function BuildingDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Building not found</h1>
-          <Button onClick={() => navigate('/')}>
+          <h1 className="text-2xl font-bold text-white mb-4">Gedung tidak ditemukan</h1>
+          <Button onClick={() => navigate('/')}> 
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Campus
+            Kembali ke Kampus
           </Button>
         </div>
       </div>
@@ -71,8 +71,8 @@ export default function BuildingDetail() {
   return (
     <>
       <Helmet>
-        <title>Journey Of Economics</title>
-        <meta name="description" content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
+        <title>Jelajahi Ekonomi</title>
+        <meta name="description" content="Ikuti tur virtual interaktif di Fakultas Ekonomika dan Bisnis. Jelajahi gedung, fasilitas, dan ruang dalam panorama 360° yang menakjubkan." />
       </Helmet>
 
       <div className="min-h-screen relative">
@@ -85,19 +85,19 @@ export default function BuildingDetail() {
                 <Menu className="w-6 h-6 text-white" />
               </Button>
             </div>
-            <div className="hidden md:block">
-              <Button
-                variant="ghost"
-                onClick={() => navigate('/')}
-                className="glass bg-black/80 text-white hover:bg-white/20"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Campus
-              </Button>
-            </div>
           </div>
           <div className="glass bg-black/50 rounded-lg px-4 py-2">
             <h1 className="text-lg font-bold text-white">{building.name}</h1>
+          </div>
+          <div className="hidden md:block">
+            <Button
+              variant="ghost"
+              onClick={() => navigate('/')}
+              className="glass bg-black/80 text-white hover:bg-white/20"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Kembali ke Kampus
+            </Button>
           </div>
           {/* Home icon for mobile (show only if sidebar is closed) */}
           <div className="md:hidden">
@@ -115,7 +115,7 @@ export default function BuildingDetail() {
             <div className="glass bg-black/50 rounded-lg p-4 max-w-sm">
               <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
                 <Building2 className="w-4 h-4" />
-                Sub-buildings
+                Subgedung
               </h3>
               <div className="space-y-2">
                 {building.subBuildings.map((subBuilding) => (
@@ -156,7 +156,7 @@ export default function BuildingDetail() {
                 poster={currentRoom.panorama || undefined}
               >
                 <source src={currentRoom.video} type="video/mp4" />
-                Your browser does not support the video tag.
+                Browser Anda tidak mendukung video.
               </video>
             </div>
           ) : (
@@ -183,18 +183,18 @@ export default function BuildingDetail() {
               </p>
               {building.subBuildings && building.subBuildings.length > 0 ? (
                 <p className="text-sm text-blue-300">
-                  This building contains sub-buildings. Use the navigation panel to explore them.
+                  Gedung ini memiliki subgedung. Gunakan panel navigasi untuk menjelajahinya.
                 </p>
               ) : (
                 <Button
                   onClick={() => toast({
-                    title: "🚧 Feature Coming Soon!",
-                    description: "Panoramic views for this building will be available soon. Stay tuned! 🚀"
+                    title: "Fitur Segera Hadir!",
+                    description: "Panorama gedung ini akan tersedia segera. Nantikan update selanjutnya! 🚀"
                   })}
                   className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
-                  Explore Building
+                  Jelajahi Gedung
                 </Button>
               )}
             </motion.div>
