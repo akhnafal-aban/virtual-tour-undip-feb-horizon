@@ -1,247 +1,274 @@
-
 export const campusBuildings = [
   {
-    id: 'library',
-    name: 'Central Library',
-    description: 'Modern academic library with study spaces and digital resources',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
-    type: 'main',
+    id: "outdoor",
+    name: "Area Luar Gedung",
+    description: "Fasilitas di luar gedung utama FEB.",
+    type: "outdoor",
+    thumbnail: "/images/fotoGedung/Parkiran 3.jpg",
+    // subBuildings: [],
     rooms: [
       {
-        id: 'main-hall',
-        name: 'Main Hall',
-        panorama: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=2048&h=1024&fit=crop',
+        id: "parkiran",
+        name: "Parkiran",
+        panorama: "/images/original/Parkiran.jpg",
         hotspots: [
-          {
-            id: 'to-reading-room',
-            position: { x: 100, y: 0, z: -50 },
-            targetRoom: 'reading-room',
-            label: 'Reading Room'
-          },
-          {
-            id: 'to-computer-lab',
-            position: { x: -80, y: 10, z: 60 },
-            targetRoom: 'computer-lab',
-            label: 'Computer Lab'
-          }
-        ]
+          { id: "to-danau", position: { x: 80, y: 0, z: 300 }, targetRoom: "danau-feb", label: "Danau FEB" },
+        ],
       },
       {
-        id: 'reading-room',
-        name: 'Reading Room',
-        panorama: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=2048&h=1024&fit=crop',
+        id: "danau-feb",
+        name: "Danau FEB",
+        panorama: "/images/original/Danau FEB.jpg",
         hotspots: [
-          {
-            id: 'back-to-main',
-            position: { x: 0, y: 0, z: 100 },
-            targetRoom: 'main-hall',
-            label: 'Main Hall'
-          }
-        ]
+          { id: "to-parkiran", position: { x: 100, y: -100, z: -300 }, targetRoom: "parkiran", label: "Parkiran" },
+          { id: "to-lapangan-basket", position: { x: 0, y: 0, z: 300 }, targetRoom: "lapangan-basket", label: "Lapangan Basket" },
+        ],
       },
       {
-        id: 'computer-lab',
-        name: 'Computer Lab',
-        panorama: 'https://images.unsplash.com/photo-1562774053-701939374585?w=2048&h=1024&fit=crop',
+        id: "lapangan-basket",
+        name: "Lapangan Basket",
+        panorama: "/images/original/Lapangan Olahraga.jpg",
         hotspots: [
-          {
-            id: 'back-to-main-2',
-            position: { x: 0, y: 0, z: -100 },
-            targetRoom: 'main-hall',
-            label: 'Main Hall'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'science-complex',
-    name: 'Science Complex',
-    description: 'State-of-the-art laboratories and research facilities',
-    thumbnail: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop',
-    type: 'main',
-    subBuildings: [
-      {
-        id: 'chemistry-lab',
-        name: 'Chemistry Laboratory',
-        description: 'Advanced chemistry research and teaching lab',
-        thumbnail: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=600&fit=crop'
+          { id: "to-pakardo", position: { x: -460, y: -30, z: 280 }, targetRoom: "pakardo", label: "Pakardo" },
+        ],
       },
       {
-        id: 'physics-lab',
-        name: 'Physics Laboratory',
-        description: 'Modern physics lab with cutting-edge equipment',
-        thumbnail: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=800&h=600&fit=crop'
-      }
+        id: "pakardo",
+        name: "Pakardo",
+        panorama: "/images/original/Pakardo.jpg",
+        hotspots: [
+          { id: "to-lapangan-basket", position: { x: 360, y: 0, z: -450 }, targetRoom: "lapangan-basket", label: "Lapangan Basket" },
+          { id: "to-masjid-ekonomi", position: { x: 0, y: 0, z: 300 }, targetRoom: "masjid-ekonomi", label: "Masjid" },
+        ],
+      },
+      {
+        id: "masjid-ekonomi",
+        name: "Masjid Ekonomi",
+        panorama: "/images/original/Masjid.jpg",
+        hotspots: [
+          { id: "to-dome-feb", position: { x: 80, y: 0, z: 60 }, targetRoom: "dome-feb", label: "Dome FEB" },
+        ],
+      },
+      {
+        id: "dome-feb",
+        name: "Dome FEB",
+        panorama: "/images/original/Dome.jpg",
+        hotspots: [
+          { id: "to-parkiran", position: { x: 80, y: 0, z: 60 }, targetRoom: "parkiran", label: "Parkiran" },
+        ],
+      },
     ],
-    rooms: [
-      {
-        id: 'main-lobby',
-        name: 'Main Lobby',
-        panorama: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'to-lecture-hall',
-            position: { x: 50, y: 0, z: -80 },
-            targetRoom: 'lecture-hall',
-            label: 'Lecture Hall'
-          }
-        ]
-      },
-      {
-        id: 'lecture-hall',
-        name: 'Lecture Hall',
-        panorama: 'https://images.unsplash.com/photo-1523050854058-8df90110c9d1?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'back-to-lobby',
-            position: { x: 0, y: 0, z: 100 },
-            targetRoom: 'main-lobby',
-            label: 'Main Lobby'
-          }
-        ]
-      }
-    ]
   },
   {
-    id: 'student-center',
-    name: 'Student Center',
-    description: 'Hub for student activities, dining, and social spaces',
-    thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-    type: 'main',
+    id: "gedung-a",
+    name: "Gedung A",
+    description: "Gedung A FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/gedungA.jpg",
+    // subBuildings: [],
     rooms: [
       {
-        id: 'cafeteria',
-        name: 'Cafeteria',
-        panorama: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=2048&h=1024&fit=crop',
+        id: "lobby-manajemen",
+        name: "Lobby Manajemen",
+        panorama: "/images/original/Gedung A.jpg",
         hotspots: [
-          {
-            id: 'to-lounge',
-            position: { x: -60, y: 0, z: 80 },
-            targetRoom: 'student-lounge',
-            label: 'Student Lounge'
-          }
-        ]
+          { id: "to-lobby-akuntansi", position: { x: 160, y: 0, z: 60 }, targetRoom: "lobby-akuntansi", label: "Gedung B" },
+        ],
       },
       {
-        id: 'student-lounge',
-        name: 'Student Lounge',
-        panorama: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=2048&h=1024&fit=crop',
+        id: "video-gedung-a",
+        name: "Video Gedung A",
+        panorama: "/images/original/Gedung A.jpg",
         hotspots: [
-          {
-            id: 'back-to-cafeteria',
-            position: { x: 80, y: 0, z: -60 },
-            targetRoom: 'cafeteria',
-            label: 'Cafeteria'
-          }
-        ]
-      }
-    ]
+          { id: "to-lobby-akuntansi", position: { x: 160, y: 0, z: 60 }, targetRoom: "lobby-akuntansi", label: "Gedung B" },
+        ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+A.mp4",
+      },
+    ],
   },
   {
-    id: 'sports-complex',
-    name: 'Sports Complex',
-    description: 'Athletic facilities including gym, pool, and sports fields',
-    thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-    type: 'main',
+    id: "gedung-b",
+    name: "Gedung B",
+    description: "Gedung B FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/gedungB.jpg",
+    // subBuildings: [],
     rooms: [
       {
-        id: 'gymnasium',
-        name: 'Gymnasium',
-        panorama: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=2048&h=1024&fit=crop',
+        id: "lobby-akuntansi",
+        name: "Lobby Akuntansi",
+        panorama: "/images/original/Gedung B.jpg",
         hotspots: [
-          {
-            id: 'to-pool',
-            position: { x: 0, y: 0, z: -100 },
-            targetRoom: 'swimming-pool',
-            label: 'Swimming Pool'
-          }
-        ]
+          { id: "to-lobby-manajemen", position: { x: 80, y: 0, z: 60 }, targetRoom: "lobby-manajemen", label: "Gedung A" },
+        ],
       },
       {
-        id: 'swimming-pool',
-        name: 'Swimming Pool',
-        panorama: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=2048&h=1024&fit=crop',
+        id: "kemenkeu",
+        name: "Kemenkeu (Video)",
+        panorama: null, // Video, tidak ada panorama
+        hotspots: [],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+B.mp4",
+      },
+    ],
+  },
+  {
+    id: "gedung-c",
+    name: "Gedung C",
+    description: "Gedung C FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/gedungC.jpg",
+    // subBuildings: [],
+    rooms: [
+      {
+        id: "lobby-ilmu-ekonomi",
+        name: "Lobby Ilmu Ekonomi",
+        panorama: "/images/original/Gedung C.jpg",
         hotspots: [
-          {
-            id: 'back-to-gym',
-            position: { x: 0, y: 0, z: 100 },
-            targetRoom: 'gymnasium',
-            label: 'Gymnasium'
-          }
-        ]
-      }
-    ]
-  }
+          { id: "to-hall", position: { x: 400, y: 0, z: -180 }, targetRoom: "hall-gedung-c", label: "Hall Gedung C" },
+        ],
+      },
+      {
+        id: "video-gedung-c",
+        name: "Video Gedung C",
+        panorama: "/images/original/Gedung C.jpg",
+        hotspots: [
+          { id: "to-hall", position: { x: 400, y: 0, z: -180 }, targetRoom: "hall-gedung-c", label: "Hall Gedung C" },
+        ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+C.mp4",
+      },
+      {
+        id: "hall-gedung-c",
+        name: "Hall Gedung C",
+        panorama: "/images/original/Hall Gedung C.jpg",
+        hotspots: [
+          { id: "to-kelas", position: { x: 340, y: -100, z: -500 }, targetRoom: "kelas-gedung-c", label: "Lobby Ilmu Ekonomi" },
+        ],
+      },
+      {
+        id: "kelas-gedung-c",
+        name: "Kelas (360)",
+        panorama: "/images/original/Ruang Kelas.jpg", // Ganti jika ada foto kelas 360
+        hotspots: [
+          { id: "to-kantin", position: { x: 10, y: 0, z: 60 }, targetRoom: "kantin-gedung-c", label: "Kantin Gedung C" },
+        ],
+      },
+      {
+        id: "kantin-gedung-c",
+        name: "Kantin",
+        panorama: "/images/original/Kantin Gedung C.jpg",
+        hotspots: [
+          { id: "to-lobby", position: { x: 0, y: -50, z: 500 }, targetRoom: "lobby-ilmu-ekonomi", label: "Lobby Ilmu Ekonomi" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "gedung-iup",
+    name: "Gedung IUP",
+    description: "Gedung IUP FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/IMG_3901.jpg",
+    // subBuildings: [],
+    rooms: [
+      {
+        id: "perpustakaan",
+        name: "Perpustakaan",
+        panorama: "/images/original/Perpustakaan.jpg",
+        hotspots: [
+          { id: "to-digilib", position: { x: 80, y: 0, z: 60 }, targetRoom: "digilib", label: "Digilib" },
+        ],
+      },
+      {
+        id: "video-gedung-iup",
+        name: "Video Gedung IUP",
+        panorama: "/images/original/Perpustakaan.jpg",
+        hotspots: [
+          { id: "to-digilib", position: { x: 80, y: 0, z: 60 }, targetRoom: "digilib", label: "Digilib" },
+        ],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+IUP.mp4",
+      },
+      {
+        id: "digilib",
+        name: "Digilib",
+        panorama: "/images/original/Digilib Gedung IUP.jpg",
+        hotspots: [
+          { id: "to-bloomberg", position: { x: 80, y: 0, z: 60 }, targetRoom: "bloomberg", label: "Bloomberg" },
+        ],
+      },
+      {
+        id: "bloomberg",
+        name: "Bloomberg",
+        panorama: "/images/original/Bloomberg IUP .jpg",
+        hotspots: [
+          { id: "to-lab-komputer", position: { x: 80, y: 0, z: 60 }, targetRoom: "lab-komputer", label: "Lab Komputer" },
+        ],
+      },
+      {
+        id: "lab-komputer",
+        name: "Lab Komputer",
+        panorama: "/images/original/Lab Komputer IUP.jpg",
+        hotspots: [
+          { id: "to-perpustakaan", position: { x: 80, y: 0, z: 60 }, targetRoom: "perpustakaan", label: "Perpustakaan" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "gedung-kwu",
+    name: "Gedung KWU",
+    description: "Gedung Kewirausahaan FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/GedungKWU.jpg",
+    // subBuildings: [],
+    rooms: [
+      {
+        id: "video-gedung-kwu",
+        name: "Video Gedung Lab KWU",
+        panorama: null,
+        hotspots: [],
+        video: "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+Lab+KWU.mp4",
+      },
+      {
+        id: "auditorium-lab-kwu",
+        name: "Auditorium Lab KWU (Video)",
+        panorama: null, // Video, tidak ada panorama
+        hotspots: [],
+      },
+      {
+        id: "inspiration-space",
+        name: "The Inspiration Space (Video)",
+        panorama: null, // Video, tidak ada panorama
+        hotspots: [],
+      },
+    ],
+  },
+  {
+    id: "dekanat",
+    name: "Dekanat",
+    description: "Gedung Dekanat FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/IMG_3908.jpg",
+    // subBuildings: [],
+    rooms: [
+      {
+        id: "lobby-dekanat",
+        name: "Lobby Dekanat (360)",
+        panorama: "/images/original/Dekanat FEB.jpg",
+        hotspots: [
+          { id: "to-parkiran", position: { x: 80, y: 0, z: 60 }, targetRoom: "parkiran", label: "Parkiran" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "gedung-pkm",
+    name: "Gedung PKM",
+    description: "Gedung PKM FEB",
+    type: "main",
+    thumbnail: "/images/fotoGedung/GedungPKM.jpg",
+    // subBuildings: [],
+    rooms: [],
+  },
 ];
 
-export const subBuildingData = {
-  'chemistry-lab': {
-    id: 'chemistry-lab',
-    name: 'Chemistry Laboratory',
-    description: 'Advanced chemistry research and teaching laboratory with modern equipment',
-    parentBuilding: 'science-complex',
-    rooms: [
-      {
-        id: 'main-lab',
-        name: 'Main Laboratory',
-        panorama: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'to-prep-room',
-            position: { x: 80, y: 0, z: 60 },
-            targetRoom: 'prep-room',
-            label: 'Preparation Room'
-          }
-        ]
-      },
-      {
-        id: 'prep-room',
-        name: 'Preparation Room',
-        panorama: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'back-to-main-lab',
-            position: { x: -80, y: 0, z: -60 },
-            targetRoom: 'main-lab',
-            label: 'Main Laboratory'
-          }
-        ]
-      }
-    ]
-  },
-  'physics-lab': {
-    id: 'physics-lab',
-    name: 'Physics Laboratory',
-    description: 'Modern physics laboratory with cutting-edge research equipment',
-    parentBuilding: 'science-complex',
-    rooms: [
-      {
-        id: 'research-lab',
-        name: 'Research Laboratory',
-        panorama: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'to-equipment-room',
-            position: { x: -70, y: 0, z: 70 },
-            targetRoom: 'equipment-room',
-            label: 'Equipment Room'
-          }
-        ]
-      },
-      {
-        id: 'equipment-room',
-        name: 'Equipment Room',
-        panorama: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=2048&h=1024&fit=crop',
-        hotspots: [
-          {
-            id: 'back-to-research',
-            position: { x: 70, y: 0, z: -70 },
-            targetRoom: 'research-lab',
-            label: 'Research Laboratory'
-          }
-        ]
-      }
-    ]
-  }
-};
+export const subBuildingData = {};

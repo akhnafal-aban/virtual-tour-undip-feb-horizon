@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Menu, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { subBuildingData } from '@/data/campusData';
 import PanoramaViewer from '@/components/PanoramaViewer';
@@ -14,6 +14,7 @@ export default function SubBuildingDetail() {
   const [subBuilding, setSubBuilding] = useState(null);
   const [currentRoom, setCurrentRoom] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const foundSubBuilding = subBuildingData[subBuildingId];
@@ -64,20 +65,35 @@ export default function SubBuildingDetail() {
 
       <div className="min-h-screen relative">
         {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-50 p-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(`/building/${buildingId}`)}
-              className="glass text-white hover:bg-white/20"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Building
-            </Button>
-            
-            <div className="glass rounded-lg px-4 py-2">
-              <h1 className="text-lg font-bold text-white">{subBuilding.name}</h1>
+        <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
+          {/* Hamburger (Menu) icon for mobile */}
+          <div className="flex items-center gap-2">
+            <div className="md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass">
+                <Menu className="w-6 h-6 text-white" />
+              </Button>
             </div>
+            <div className="hidden md:block">
+              <Button
+                variant="ghost"
+                onClick={() => navigate(`/building/${buildingId}`)}
+                className="glass text-white hover:bg-white/20"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Building
+              </Button>
+            </div>
+          </div>
+          <div className="glass rounded-lg px-4 py-2">
+            <h1 className="text-lg font-bold text-white">{subBuilding.name}</h1>
+          </div>
+          {/* Home icon for mobile (show only if sidebar is closed) */}
+          <div className="md:hidden">
+            {!sidebarOpen && (
+              <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass">
+                <Home className="w-6 h-6 text-white" />
+              </Button>
+            )}
           </div>
         </header>
 
@@ -87,6 +103,8 @@ export default function SubBuildingDetail() {
             rooms={subBuilding.rooms}
             currentRoom={currentRoom}
             onRoomChange={handleRoomChange}
+            isOpen={sidebarOpen || window.innerWidth >= 768}
+            onClose={() => setSidebarOpen(false)}
           />
         )}
 
