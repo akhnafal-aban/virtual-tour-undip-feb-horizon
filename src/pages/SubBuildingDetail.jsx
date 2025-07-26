@@ -1,12 +1,11 @@
-
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import { ArrowLeft, Menu, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { subBuildingData } from '@/data/campusData';
-import PanoramaViewer from '@/components/PanoramaViewer';
-import RoomNavigation from '@/components/RoomNavigation';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { ArrowLeft, Menu, Home } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { subBuildingData } from "@/data/campusData";
+import PanoramaViewer from "@/components/PanoramaViewer";
+import RoomNavigation from "@/components/RoomNavigation";
 
 export default function SubBuildingDetail() {
   const { buildingId, subBuildingId } = useParams();
@@ -28,7 +27,7 @@ export default function SubBuildingDetail() {
   }, [subBuildingId]);
 
   const handleRoomChange = (roomId) => {
-    const room = subBuilding.rooms.find(r => r.id === roomId);
+    const room = subBuilding.rooms.find((r) => r.id === roomId);
     if (room) {
       setCurrentRoom(room);
     }
@@ -46,7 +45,9 @@ export default function SubBuildingDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Sub-building not found</h1>
+          <h1 className="text-2xl font-bold text-white mb-4">
+            Sub-building not found
+          </h1>
           <Button onClick={() => navigate(`/building/${buildingId}`)}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Building
@@ -60,7 +61,10 @@ export default function SubBuildingDetail() {
     <>
       <Helmet>
         <title>{subBuilding.name} - Virtual Campus Tour</title>
-        <meta name="description" content={`Explore ${subBuilding.name} in 360° panoramic view. ${subBuilding.description}`} />
+        <meta
+          name="description"
+          content={`Explore ${subBuilding.name} in 360° panoramic view. ${subBuilding.description}`}
+        />
       </Helmet>
 
       <div className="min-h-screen relative">
@@ -69,7 +73,12 @@ export default function SubBuildingDetail() {
           {/* Hamburger (Menu) icon for mobile */}
           <div className="flex items-center gap-2">
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSidebarOpen(true)}
+                className="glass"
+              >
                 <Menu className="w-6 h-6 text-white" />
               </Button>
             </div>
@@ -90,7 +99,12 @@ export default function SubBuildingDetail() {
           {/* Home icon for mobile (show only if sidebar is closed) */}
           <div className="md:hidden">
             {!sidebarOpen && (
-              <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate("/")}
+                className="glass"
+              >
                 <Home className="w-6 h-6 text-white" />
               </Button>
             )}

@@ -30,6 +30,12 @@ function convertHotspots(hotspots) {
           width: 64,
           height: 64,
           anchor: "center center",
+          // Add tooltip positioning to ensure consistent distance
+          tooltip: {
+            content: h.label,
+            position: "top", // Force tooltip to appear above marker
+            offset: 30, // Consistent offset distance
+          },
         };
       }
       // Jika x/y/z (THREE), konversi ke spherical
@@ -56,6 +62,13 @@ function convertHotspots(hotspots) {
           width: 64,
           height: 64,
           anchor: "center center",
+          // Add tooltip positioning to ensure consistent distance
+          tooltip: {
+            
+            content: h.label,
+            position: "top", // Force tooltip to appear above marker
+            offset: 30, // Consistent offset distance
+          },
         };
       }
       return null;
@@ -78,43 +91,45 @@ const PanoramaViewer = ({ room, onHotspotClick, height = "100%" }) => {
     Promise.all([
       import("photo-sphere-viewer"),
       import("photo-sphere-viewer/dist/plugins/markers"),
-    ]).then(([_PSV, _Markers]) => {
-      if (!isMounted || !viewerRef.current || !room) return;
-      PSV = _PSV.default || _PSV;
-      const MarkersPlugin = _Markers.MarkersPlugin || _Markers.default;
-      psvInstance.current = new PSV.Viewer({
-        container: viewerRef.current,
-        panorama: room.panorama,
-        navbar: "zoom move fullscreen",
-        defaultLong: Math.PI,
-        plugins: [MarkersPlugin],
-      });
-      markersPluginRef.current =
-        psvInstance.current.getPlugin(MarkersPlugin) || null;
-      if (
-        markersPluginRef.current &&
-        room.hotspots &&
-        room.hotspots.length > 0
-      ) {
-        markersPluginRef.current.setMarkers(convertHotspots(room.hotspots));
-        markersPluginRef.current.on("select-marker", (e, marker) => {
-          if (onHotspotClick && marker.data && marker.data.target) {
-            onHotspotClick(marker.data.target);
-          }
+    ])
+      .then(([_PSV, _Markers]) => {
+        if (!isMounted || !viewerRef.current || !room) return;
+        PSV = _PSV.default || _PSV;
+        const MarkersPlugin = _Markers.MarkersPlugin || _Markers.default;
+        psvInstance.current = new PSV.Viewer({
+          container: viewerRef.current,
+          panorama: room.panorama,
+          navbar: "zoom move fullscreen",
+          defaultLong: Math.PI,
+          plugins: [MarkersPlugin],
         });
-      }
-      // Loading and error events
-      psvInstance.current.on("ready", () => {
+        markersPluginRef.current =
+          psvInstance.current.getPlugin(MarkersPlugin) || null;
+        if (
+          markersPluginRef.current &&
+          room.hotspots &&
+          room.hotspots.length > 0
+        ) {
+          markersPluginRef.current.setMarkers(convertHotspots(room.hotspots));
+          markersPluginRef.current.on("select-marker", (e, marker) => {
+            if (onHotspotClick && marker.data && marker.data.target) {
+              onHotspotClick(marker.data.target);
+            }
+          });
+        }
+        // Loading and error events
+        psvInstance.current.on("ready", () => {
+          setIsLoading(false);
+        });
+        psvInstance.current.on("panorama-load-fail", () => {
+          setError("Failed to load panorama");
+          setIsLoading(false);
+        });
+      })
+      .catch((err) => {
+        setError("Failed to initialize panorama viewer");
         setIsLoading(false);
       });
-      psvInstance.current.on("panorama-load-fail", () => {
-        setError("Failed to load panorama");
-        setIsLoading(false);
-      });
-    }).catch((err) => {
-      setError("Failed to initialize panorama viewer");
-      setIsLoading(false);
-    });
     return () => {
       isMounted = false;
       if (psvInstance.current) {
@@ -156,7 +171,9 @@ const PanoramaViewer = ({ room, onHotspotClick, height = "100%" }) => {
         >
           <div className="glass rounded-2xl p-8 text-center">
             <Loader2 className="w-12 h-12 text-blue-400 animate-spin mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-white mb-2">Loading Panorama</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Loading Panorama
+            </h3>
             <p className="text-blue-200">Preparing your 360° experience...</p>
           </div>
         </motion.div>
@@ -173,7 +190,9 @@ const PanoramaViewer = ({ room, onHotspotClick, height = "100%" }) => {
             <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Info className="w-8 h-8 text-red-400" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">Panorama Unavailable</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Panorama Unavailable
+            </h3>
             <p className="text-blue-200 mb-4">{error}</p>
             <p className="text-sm text-blue-300">Showing static view instead</p>
           </div>

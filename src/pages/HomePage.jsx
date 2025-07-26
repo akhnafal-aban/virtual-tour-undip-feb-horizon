@@ -1,16 +1,16 @@
-import { colorPalette } from '@/data/colorData';
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { MapPin, Building2, Users, Star } from 'lucide-react';
-import { campusBuildings } from '@/data/campusData';
-import { logoList } from '@/data/LogoList';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import SwiperCore from 'swiper';
-import { Autoplay } from 'swiper/modules';
+import { colorPalette } from "@/data/colorData";
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { MapPin, Building2, Users, Star } from "lucide-react";
+import { campusBuildings } from "@/data/campusData";
+import { logoList } from "@/data/LogoList";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import SwiperCore from "swiper";
+import { Autoplay } from "swiper/modules";
 SwiperCore.use([Autoplay]);
 
 export default function HomePage() {
@@ -24,7 +24,10 @@ export default function HomePage() {
     <>
       <Helmet>
         <title>Journey Of Economics</title>
-        <meta name="description" content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views." />
+        <meta
+          name="description"
+          content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views."
+        />
       </Helmet>
 
       <div className="min-h-screen">
@@ -81,7 +84,8 @@ export default function HomePage() {
                       <img
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         alt={`${building.name} exterior view`}
-                        src={building.thumbnail || "/images/logo.PNG"} />
+                        src={building.thumbnail || "/images/logo.PNG"}
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                       <div className="absolute top-4 right-4">
                         <div className="glass rounded-full p-2">
@@ -131,7 +135,9 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-4 text-white">Logo Ormawa</h2>
+              <h2 className="text-4xl font-bold mb-4 text-white">
+                Logo Ormawa
+              </h2>
               <div className="overflow-hidden w-full mb-8">
                 <Swiper
                   slidesPerView={6}
@@ -140,20 +146,23 @@ export default function HomePage() {
                   autoplay={{ delay: 0, disableOnInteraction: false }}
                   speed={4000}
                   allowTouchMove={false}
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   breakpoints={{
                     0: { slidesPerView: 3 },
                     640: { slidesPerView: 4 },
-                    1024: { slidesPerView: 6 }
+                    1024: { slidesPerView: 6 },
                   }}
                 >
-                  {(logoList.find(l => l.folder.includes('Logo Ormawa'))?.logos || []).map((logo, idx) => (
-                    <SwiperSlide key={logo + '-' + idx}>
+                  {(
+                    logoList.find((l) => l.folder.includes("Logo Ormawa"))
+                      ?.logos || []
+                  ).map((logo, idx) => (
+                    <SwiperSlide key={logo + "-" + idx}>
                       <img
                         src={`/images/Logo Ormawa/${logo}`}
                         alt={logo}
                         className="h-40 w-auto rounded-xl p-2"
-                        style={{ objectFit: 'contain' }}
+                        style={{ objectFit: "contain" }}
                       />
                     </SwiperSlide>
                   ))}
@@ -165,23 +174,30 @@ export default function HomePage() {
                   slidesPerView={6}
                   spaceBetween={32}
                   loop={true}
-                  autoplay={{ delay: 0, reverseDirection: true, disableOnInteraction: false }}
+                  autoplay={{
+                    delay: 0,
+                    reverseDirection: true,
+                    disableOnInteraction: false,
+                  }}
                   speed={4000}
                   allowTouchMove={false}
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   breakpoints={{
                     0: { slidesPerView: 3 },
                     640: { slidesPerView: 4 },
-                    1024: { slidesPerView: 6 }
+                    1024: { slidesPerView: 6 },
                   }}
                 >
-                  {(logoList.find(l => l.folder.includes('Logo UKM'))?.logos || []).map((logo, idx) => (
-                    <SwiperSlide key={logo + '-' + idx}>
+                  {(
+                    logoList.find((l) => l.folder.includes("Logo UKM"))
+                      ?.logos || []
+                  ).map((logo, idx) => (
+                    <SwiperSlide key={logo + "-" + idx}>
                       <img
                         src={`/images/Logo UKM/${logo}`}
                         alt={logo}
                         className="h-40 w-auto rounded-xl p-2"
-                        style={{ objectFit: 'contain' }}
+                        style={{ objectFit: "contain" }}
                       />
                     </SwiperSlide>
                   ))}

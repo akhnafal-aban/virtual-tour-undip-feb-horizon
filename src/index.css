@@ -4,7 +4,7 @@
 
 body {
   @apply bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -45,7 +45,11 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.85));
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 58, 138, 0.85)
+  );
   backdrop-filter: blur(10px);
   border-right: 1px solid rgba(59, 130, 246, 0.3);
 }
@@ -71,8 +75,12 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Glass morphism effect */
@@ -94,7 +102,7 @@ body {
 .psv-container,
 .psv-overlay,
 .psv-loader-container {
-  background: rgba(15,23,42,0.95) !important; /* sesuai tema dark Anda */
+  background: rgba(15, 23, 42, 0.95) !important; /* sesuai tema dark Anda */
 }
 
 .psv-loader {
@@ -106,13 +114,77 @@ body {
   color: #60a5fa !important;
 }
 
+/* Custom tooltip styling for photo-sphere-viewer */
+.psv-tooltip {
+  /* background: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important; */
+  /* min-height: 40px !important;
+  max-height: 60px !important; */
+  /* line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; */
+
+  margin-top: 120px !important;
+  /* margin-bottom: 20px !important; */
+  margin-left: -2px !important;
+  /* margin-right: 20px !important; */
+
+  /* Alternative: Use transform to adjust position */
+  /* transform: translateY(-30px) !important; */ /* Move tooltip up by 30px */
+}
+
+/* Tooltip arrow positioning - adjust the arrow distance */
+.psv-tooltip::before {
+  border-top-color: rgba(0, 0, 0, 0.8) !important;
+  /* Adjust arrow position relative to tooltip */
+  /* top: -8px !important; Move arrow closer to tooltip */
+  /* bottom: -8px !important; */ /* For tooltips below marker */
+}
+
+/* Alternative: Position tooltip above marker instead of below */
+.psv-tooltip.psv-tooltip--top {
+  margin-top: -40px !important; /* Move tooltip above marker */
+  margin-bottom: 20px !important;
+}
+
+/* Tooltip arrow for top positioning */
+.psv-tooltip.psv-tooltip--top::before {
+  bottom: -8px !important;
+  top: auto !important;
+  border-bottom-color: rgba(0, 0, 0, 0.8) !important;
+  border-top-color: transparent !important;
+}
+
+/* Hover effect for tooltips */
+.psv-tooltip:hover {
+  background: rgba(0, 0, 0, 0.9) !important;
+  transform: scale(1.05) !important;
+  transition: all 0.2s ease !important;
+}
+
 @keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 @keyframes marquee-reverse {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 .animate-marquee {
   animation: marquee 20s linear infinite;

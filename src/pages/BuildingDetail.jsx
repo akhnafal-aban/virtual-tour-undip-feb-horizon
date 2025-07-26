@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Building2, MapPin, Eye, Menu, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { toast } from '@/components/ui/use-toast';
-import { campusBuildings } from '@/data/campusData';
-import PanoramaViewer from '@/components/PanoramaViewer';
-import RoomNavigation from '@/components/RoomNavigation';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { ArrowLeft, Building2, MapPin, Eye, Menu, Home } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { campusBuildings } from "@/data/campusData";
+import PanoramaViewer from "@/components/PanoramaViewer";
+import RoomNavigation from "@/components/RoomNavigation";
 
 export default function BuildingDetail() {
   const { buildingId } = useParams();
@@ -18,7 +18,7 @@ export default function BuildingDetail() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const foundBuilding = campusBuildings.find(b => b.id === buildingId);
+    const foundBuilding = campusBuildings.find((b) => b.id === buildingId);
     if (foundBuilding) {
       setBuilding(foundBuilding);
       if (foundBuilding.rooms && foundBuilding.rooms.length > 0) {
@@ -29,12 +29,12 @@ export default function BuildingDetail() {
   }, [buildingId]);
 
   const handleRoomChange = (roomId) => {
-    const room = building.rooms.find(r => r.id === roomId);
+    const room = building.rooms.find((r) => r.id === roomId);
     if (room) {
       setCurrentRoom(room);
     } else {
       for (const b of campusBuildings) {
-        const targetRoom = b.rooms.find(r => r.id === roomId);
+        const targetRoom = b.rooms.find((r) => r.id === roomId);
         if (targetRoom) {
           navigate(`/building/${b.id}`);
           setTimeout(() => {
@@ -58,8 +58,10 @@ export default function BuildingDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Gedung tidak ditemukan</h1>
-          <Button onClick={() => navigate('/')}> 
+          <h1 className="text-2xl font-bold text-white mb-4">
+            Gedung tidak ditemukan
+          </h1>
+          <Button onClick={() => navigate("/")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Kembali ke Kampus
           </Button>
@@ -72,7 +74,10 @@ export default function BuildingDetail() {
     <>
       <Helmet>
         <title>Jelajahi Ekonomi</title>
-        <meta name="description" content="Ikuti tur virtual interaktif di Fakultas Ekonomika dan Bisnis. Jelajahi gedung, fasilitas, dan ruang dalam panorama 360° yang menakjubkan." />
+        <meta
+          name="description"
+          content="Ikuti tur virtual interaktif di Fakultas Ekonomika dan Bisnis. Jelajahi gedung, fasilitas, dan ruang dalam panorama 360° yang menakjubkan."
+        />
       </Helmet>
 
       <div className="min-h-screen relative">
@@ -81,7 +86,12 @@ export default function BuildingDetail() {
           {/* Hamburger (Menu) icon for mobile */}
           <div className="flex items-center gap-2">
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)} className="glass bg-black/50">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSidebarOpen(true)}
+                className="glass bg-black/50"
+              >
                 <Menu className="w-6 h-6 text-white" />
               </Button>
             </div>
@@ -92,7 +102,7 @@ export default function BuildingDetail() {
           <div className="hidden md:block">
             <Button
               variant="ghost"
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               className="glass bg-black/80 text-white hover:bg-white/20"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -102,7 +112,12 @@ export default function BuildingDetail() {
           {/* Home icon for mobile (show only if sidebar is closed) */}
           <div className="md:hidden">
             {!sidebarOpen && (
-              <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="glass bg-black/50">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate("/")}
+                className="glass bg-black/50"
+              >
                 <Home className="w-6 h-6 text-white" />
               </Button>
             )}
@@ -125,7 +140,9 @@ export default function BuildingDetail() {
                     className="w-full text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white text-sm"
                   >
                     <div className="font-medium">{subBuilding.name}</div>
-                    <div className="text-blue-200 text-xs mt-1">{subBuilding.description}</div>
+                    <div className="text-blue-200 text-xs mt-1">
+                      {subBuilding.description}
+                    </div>
                   </button>
                 ))}
               </div>
@@ -152,7 +169,11 @@ export default function BuildingDetail() {
                 width="100%"
                 height="100%"
                 controls
-                style={{ maxHeight: '100vh', maxWidth: '100vw', background: 'black' }}
+                style={{
+                  maxHeight: "100vh",
+                  maxWidth: "100vw",
+                  background: "black",
+                }}
                 poster={currentRoom.panorama || undefined}
               >
                 <source src={currentRoom.video} type="video/mp4" />
@@ -178,19 +199,21 @@ export default function BuildingDetail() {
               <h2 className="text-2xl font-bold text-white mb-4">
                 {building.name}
               </h2>
-              <p className="text-blue-200 mb-6">
-                {building.description}
-              </p>
+              <p className="text-blue-200 mb-6">{building.description}</p>
               {building.subBuildings && building.subBuildings.length > 0 ? (
                 <p className="text-sm text-blue-300">
-                  Gedung ini memiliki subgedung. Gunakan panel navigasi untuk menjelajahinya.
+                  Gedung ini memiliki subgedung. Gunakan panel navigasi untuk
+                  menjelajahinya.
                 </p>
               ) : (
                 <Button
-                  onClick={() => toast({
-                    title: "Fitur Segera Hadir!",
-                    description: "Panorama gedung ini akan tersedia segera. Nantikan update selanjutnya! 🚀"
-                  })}
+                  onClick={() =>
+                    toast({
+                      title: "Fitur Segera Hadir!",
+                      description:
+                        "Panorama gedung ini akan tersedia segera. Nantikan update selanjutnya! 🚀",
+                    })
+                  }
                   className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
