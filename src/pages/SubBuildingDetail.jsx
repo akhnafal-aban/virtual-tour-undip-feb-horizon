@@ -45,7 +45,7 @@ export default function SubBuildingDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">
+          <h1 className="text-2xl font-bold text-black mb-4">
             Sub-building not found
           </h1>
           <Button onClick={() => navigate(`/building/${buildingId}`)}>
@@ -67,7 +67,7 @@ export default function SubBuildingDetail() {
         />
       </Helmet>
 
-      <div className="min-h-screen relative">
+      <div className="min-h-screen relative bg-white">
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
           {/* Hamburger (Menu) icon for mobile */}
@@ -79,14 +79,14 @@ export default function SubBuildingDetail() {
                 onClick={() => setSidebarOpen(true)}
                 className="glass"
               >
-                <Menu className="w-6 h-6 text-white" />
+                <Menu className="w-6 h-6 text-black" />
               </Button>
             </div>
             <div className="hidden md:block">
               <Button
                 variant="ghost"
                 onClick={() => navigate(`/building/${buildingId}`)}
-                className="glass text-white hover:bg-white/20"
+                className="glass text-black hover:bg-gray-100"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Building
@@ -94,7 +94,7 @@ export default function SubBuildingDetail() {
             </div>
           </div>
           <div className="glass rounded-lg px-4 py-2">
-            <h1 className="text-lg font-bold text-white">{subBuilding.name}</h1>
+            <h1 className="text-lg font-bold text-black">{subBuilding.name}</h1>
           </div>
           {/* Home icon for mobile (show only if sidebar is closed) */}
           <div className="md:hidden">
@@ -105,7 +105,7 @@ export default function SubBuildingDetail() {
                 onClick={() => navigate("/")}
                 className="glass"
               >
-                <Home className="w-6 h-6 text-white" />
+                <Home className="w-6 h-6 text-black" />
               </Button>
             )}
           </div>

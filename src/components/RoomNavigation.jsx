@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, MapPin, Eye, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ImageOptimizer from '@/components/ImageOptimizer';
 
 export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -31,9 +32,9 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
             className="absolute top-4 -right-4 z-50 glass rounded-full p-2 hover:bg-white/20 transition-colors"
           >
             {isExpanded ? (
-              <ChevronLeft className="w-4 h-4 text-white" />
+              <ChevronLeft className="w-4 h-4 text-black" />
             ) : (
-              <ChevronRight className="w-4 h-4 text-white" />
+              <ChevronRight className="w-4 h-4 text-black" />
             )}
           </button>
 
@@ -44,10 +45,10 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="p-6 h-screen overflow-y-auto"
+                className="p-6 h-screen overflow-y-auto "
               >
                 <div className="mb-6">
-                  <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-black mb-2 flex items-center gap-2">
                     <MapPin className="w-5 h-5" />
                     Navigation
                   </h2>
@@ -60,28 +61,28 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
                       onClick={() => onRoomChange(room.id)}
                       className={`w-full text-left p-4 rounded-xl transition-all duration-200 ${
                         currentRoom?.id === room.id
-                          ? 'bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/50'
-                          : 'bg-white/10 hover:bg-white/20 border border-transparent'
+                          ? 'bg-gradient-to-r from-[#40F7B0]/20 to-[#FF8719]/20'
+                          : 'bg-white/10 hover:bg-white/20 border border-black/20'
                       }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <div className="flex items-center gap-3">
                         {room.thumbnail || room.image || room.panorama ? (
-                          <img
+                          <ImageOptimizer
                             src={room.thumbnail || room.image || room.panorama}
                             alt={room.name}
-                            className="w-20 h-16 object-cover rounded-lg border border-white/10"
+                            className="w-20 h-16 object-cover rounded-lg border border-black/10"
                           />
                         ) : (
                           <div className="w-20 h-16 bg-blue-400/30 rounded-lg" />
                         )}
                         <div className="flex-1">
-                          <h3 className="font-semibold text-white text-sm">
+                          <h3 className="font-semibold text-black/80 text-sm">
                             {room.name}
                           </h3>
                           {room.hotspots && room.hotspots.length > 0 && (
-                            <p className="text-blue-200 text-xs mt-1">
+                            <p className="text-blue-500 text-xs mt-1">
                               {room.hotspots.length} interactive point{room.hotspots.length !== 1 ? 's' : ''}
                             </p>
                           )}
@@ -99,13 +100,13 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10"
+                    className="mt-8 p-4 bg-white/5 rounded-xl border border-black/10"
                   >
-                    <h4 className="font-semibold text-white mb-2">Current Room</h4>
-                    <p className="text-blue-200 text-sm mb-3">{currentRoom.name}</p>
+                    <h4 className="font-semibold text-black mb-2">Current Room</h4>
+                    <p className="text-blue-400 text-sm mb-3">{currentRoom.name}</p>
                     {currentRoom.hotspots && currentRoom.hotspots.length > 0 && (
                       <div>
-                        <p className="text-white text-xs mb-2">Interactive Points:</p>
+                        <p className="text-black text-xs mb-2">Interactive Points:</p>
                         <div className="space-y-1">
                           {currentRoom.hotspots.map((hotspot) => (
                             <div
@@ -190,7 +191,7 @@ export default function RoomNavigation({ rooms, currentRoom, onRoomChange }) {
                   >
                     <div className="flex flex-col items-start gap-2">
                       {room.thumbnail || room.image || room.panorama ? (
-                        <img
+                        <ImageOptimizer
                           src={room.thumbnail || room.image || room.panorama}
                           alt={room.name}
                           className="w-full h-28 object-cover rounded-xl border border-white/10 mb-2"

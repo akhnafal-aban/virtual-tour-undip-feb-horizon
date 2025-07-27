@@ -8,7 +8,7 @@ import SubBuildingDetail from '@/pages/SubBuildingDetail.jsx';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/building/:buildingId" element={<BuildingDetail />} />

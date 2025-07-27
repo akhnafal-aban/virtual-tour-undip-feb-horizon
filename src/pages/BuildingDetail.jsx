@@ -56,11 +56,11 @@ export default function BuildingDetail() {
 
   if (!building) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">
-            Gedung tidak ditemukan
-          </h1>
+                <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold text-black mb-4">
+                Gedung tidak ditemukan
+              </h1>
           <Button onClick={() => navigate("/")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Kembali ke Kampus
@@ -80,7 +80,7 @@ export default function BuildingDetail() {
         />
       </Helmet>
 
-      <div className="min-h-screen relative">
+      <div className="min-h-screen relative bg-white">
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
           {/* Hamburger (Menu) icon for mobile */}
@@ -90,45 +90,43 @@ export default function BuildingDetail() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setSidebarOpen(true)}
-                className="glass bg-black/50"
+                className="glass bg-white/90"
               >
                 <Menu className="w-6 h-6 text-white" />
               </Button>
             </div>
           </div>
-          <div className="glass bg-black/50 rounded-lg px-4 py-2">
-            <h1 className="text-lg font-bold text-white">{building.name}</h1>
+          <div className="glass bg-white/90 rounded-lg px-4 py-2">
+            <h1 className="text-lg font-bold text-white/70">{building.name}</h1>
           </div>
-          <div className="hidden md:block">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="glass bg-black/80 text-white hover:bg-white/20"
-            >
+          <div className="hidden md:block border border-white/25">
+                          <Button
+                variant="ghost"
+                onClick={() => navigate("/")}
+                className="glass bg-white/90 text-white hover:bg-gray-100"
+              >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Kembali ke Kampus
             </Button>
           </div>
-          {/* Home icon for mobile (show only if sidebar is closed) */}
-          <div className="md:hidden">
-            {!sidebarOpen && (
+          {/* Home icon for mobile*/}
+          <div className="md:hidden border border-white/25">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => navigate("/")}
-                className="glass bg-black/50"
+                className="glass bg-white/90"
               >
                 <Home className="w-6 h-6 text-white" />
               </Button>
-            )}
           </div>
         </header>
 
         {/* Sub-buildings Section (if any) */}
         {building.subBuildings && building.subBuildings.length > 0 && (
           <div className="absolute top-20 left-4 right-4 z-40">
-            <div className="glass bg-black/50 rounded-lg p-4 max-w-sm">
-              <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
+            <div className="glass bg-white/90 rounded-lg p-4 max-w-sm">
+              <h3 className="text-black font-semibold mb-3 flex items-center gap-2">
                 <Building2 className="w-4 h-4" />
                 Subgedung
               </h3>
@@ -137,10 +135,10 @@ export default function BuildingDetail() {
                   <button
                     key={subBuilding.id}
                     onClick={() => handleSubBuildingClick(subBuilding.id)}
-                    className="w-full text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-black text-sm"
                   >
                     <div className="font-medium">{subBuilding.name}</div>
-                    <div className="text-blue-200 text-xs mt-1">
+                    <div className="text-gray-600 text-xs mt-1">
                       {subBuilding.description}
                     </div>
                   </button>
@@ -169,6 +167,7 @@ export default function BuildingDetail() {
                 width="100%"
                 height="100%"
                 controls
+                preload="metadata"
                 style={{
                   maxHeight: "100vh",
                   maxWidth: "100vw",
@@ -189,19 +188,19 @@ export default function BuildingDetail() {
             </div>
           )
         ) : (
-          <div className="min-h-screen flex items-center justify-center">
+          <div className="min-h-screen flex items-center justify-center bg-black/20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-center glass rounded-2xl p-8 max-w-md mx-4"
             >
-              <Eye className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-white mb-4">
+              <Eye className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <h2 className="text-2xl font-bold text-black mb-4">
                 {building.name}
               </h2>
-              <p className="text-blue-200 mb-6">{building.description}</p>
+              <p className="text-gray-600 mb-6">{building.description}</p>
               {building.subBuildings && building.subBuildings.length > 0 ? (
-                <p className="text-sm text-blue-300">
+                <p className="text-sm text-gray-500">
                   Gedung ini memiliki subgedung. Gunakan panel navigasi untuk
                   menjelajahinya.
                 </p>
@@ -214,7 +213,7 @@ export default function BuildingDetail() {
                         "Panorama gedung ini akan tersedia segera. Nantikan update selanjutnya! 🚀",
                     })
                   }
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                  className="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
                   Jelajahi Gedung
