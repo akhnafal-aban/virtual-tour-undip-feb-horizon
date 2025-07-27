@@ -207,7 +207,7 @@ export const campusBuildings = [
           // },
         ],
         video:
-          "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+C.mp4",
+          "https://video-guide-bucket.s3.ap-southeast-2.amazonaws.com/Gedung+C+(2).mp4",
       },
       {
         id: "lobby-ilmu-ekonomi",

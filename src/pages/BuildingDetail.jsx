@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowLeft, Building2, MapPin, Eye, Menu, Home } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, Eye, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { campusBuildings } from "@/data/campusData";
@@ -56,11 +56,11 @@ export default function BuildingDetail() {
 
   if (!building) {
     return (
-                <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold text-black mb-4">
-                Gedung tidak ditemukan
-              </h1>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-black mb-4">
+            Gedung tidak ditemukan
+          </h1>
           <Button onClick={() => navigate("/")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Kembali ke Kampus
@@ -82,45 +82,37 @@ export default function BuildingDetail() {
 
       <div className="min-h-screen relative bg-white">
         {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-50 p-4 flex items-center justify-between">
-          {/* Hamburger (Menu) icon for mobile */}
-          <div className="flex items-center gap-2">
+        <header className="fixed top-0 left-0 right-0 z-50 p-4 flex items-center justify-between bg-transparent">
+          {/* Mobile: Home button & Building name */}
+          <div className="flex items-center w-full md:w-auto ml-14">
+            <div className="glass bg-white/90 rounded-lg px-4 py-2 shadow-sm flex-1 md:flex-none text-center mr-4">
+              <h1 className="text-lg font-medium text-white truncate h-[22px] text-base">{building.name}</h1>
+            </div>
             <div className="md:hidden">
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setSidebarOpen(true)}
-                className="glass bg-white/90"
+                onClick={() => navigate("/")}
+                className="glass w-10 h-10 rounded-lg bg-white/90 hover:bg-gray-100 transition-colors"
               >
-                <Menu className="w-6 h-6 text-white" />
+                <Home className="w-[22px] h-[22px] text-white" />
               </Button>
             </div>
           </div>
-          <div className="glass bg-white/90 rounded-lg px-4 py-2">
-            <h1 className="text-lg font-bold text-white/70">{building.name}</h1>
-          </div>
-          <div className="hidden md:block border border-white/25">
-                          <Button
-                variant="ghost"
-                onClick={() => navigate("/")}
-                className="glass bg-white/90 text-white hover:bg-gray-100"
-              >
+
+          {/* Desktop: Back button */}
+          <div className="hidden md:block ml-4">
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/")}
+              className="glass bg-white/90 text-black hover:bg-gray-100 transition-colors"
+            >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Kembali ke Kampus
             </Button>
           </div>
-          {/* Home icon for mobile*/}
-          <div className="md:hidden border border-white/25">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => navigate("/")}
-                className="glass bg-white/90"
-              >
-                <Home className="w-6 h-6 text-white" />
-              </Button>
-          </div>
         </header>
+
 
         {/* Sub-buildings Section (if any) */}
         {building.subBuildings && building.subBuildings.length > 0 && (
