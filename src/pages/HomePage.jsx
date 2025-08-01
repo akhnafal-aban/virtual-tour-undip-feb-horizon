@@ -11,10 +11,26 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import SwiperCore from "swiper";
 import { Autoplay } from "swiper/modules";
+import ImageOptimizer from "@/components/ImageOptimizer";
 SwiperCore.use([Autoplay]);
 
 export default function HomePage() {
   const navigate = useNavigate();
+
+  // Preload important images
+  React.useEffect(() => {
+    const preloadImages = [
+      '/images/logo.PNG',
+      ...campusBuildings
+        .filter(building => building.thumbnail)
+        .map(building => building.thumbnail)
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const handleBuildingClick = (buildingId) => {
     navigate(`/building/${buildingId}`);
@@ -26,24 +42,24 @@ export default function HomePage() {
         <title>Journey Of Economics</title>
         <meta
           name="description"
-          content="Take an immersive virtual tour of our beautiful Faculty of Economics and Business. Explore buildings, facilities, and spaces in stunning 360° panoramic views."
+          content="Ospek FEB UNDIP, Panduan Area FEB Undip untuk mahasiswa baru"
         />
       </Helmet>
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-10 px-4">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+        <section className="relative overflow-hidden py-10 px-4 bg-gradient-to-r from-[#40F7B0]/70 to-[#FF8719]/70">
           <div className="relative max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <img
+              <ImageOptimizer
                 src="/images/logo.PNG"
                 alt="Logo Acara FEB"
-                className="mx-auto mb-8 w-40 h-40 object-contain"
+                className="mx-auto mb-8 w-40 h-40 object-contain logo-glow-multi"
+                priority={true}
               />
               <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
                 Journey Of Economics
@@ -61,10 +77,10 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-4 text-white">
+              <h2 className="text-4xl font-bold mb-4 text-black">
                 Explore Now!
               </h2>
-              <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Click on any building to start
               </p>
             </motion.div>
@@ -79,9 +95,9 @@ export default function HomePage() {
                   className="group cursor-pointer"
                   onClick={() => handleBuildingClick(building.id)}
                 >
-                  <div className="glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25">
+                  <div className="glass rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-gray-500/25">
                     <div className="relative overflow-hidden">
-                      <img
+                      <ImageOptimizer
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         alt={`${building.name} exterior view`}
                         src={building.thumbnail || "/images/logo.PNG"}
@@ -95,22 +111,22 @@ export default function HomePage() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                      <h3 className="text-xl font-bold text-black mb-2 group-hover:text-gray-600 transition-colors">
                         {building.name}
                       </h3>
-                      <p className="text-blue-200 text-sm mb-4 line-clamp-2">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                         {building.description}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-blue-300">
+                        <div className="flex items-center gap-2 text-gray-700">
                           <Building2 className="w-4 h-4" />
                           <span className="text-sm">
                             {building.rooms?.length || 0} Rooms
                           </span>
                         </div>
                         {building.subBuildings && (
-                          <div className="flex items-center gap-2 text-purple-300">
+                          <div className="flex items-center gap-2 text-gray-600">
                             <MapPin className="w-4 h-4" />
                             <span className="text-sm">
                               {building.subBuildings.length} Sub-buildings
@@ -127,7 +143,7 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30">
+        <section className="py-16 px-4 bg-gradient-to-r from-[#40F7B0]/70 to-[#FF8719]/70">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -135,7 +151,7 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-4 text-white">
+              <h2 className="text-4xl font-bold mb-4 text-black gradient-text">
                 Logo Ormawa
               </h2>
               <div className="overflow-hidden w-full mb-8">
@@ -158,7 +174,7 @@ export default function HomePage() {
                       ?.logos || []
                   ).map((logo, idx) => (
                     <SwiperSlide key={logo + "-" + idx}>
-                      <img
+                      <ImageOptimizer
                         src={`/images/Logo Ormawa/${logo}`}
                         alt={logo}
                         className="h-40 w-auto rounded-xl p-2"
@@ -168,7 +184,7 @@ export default function HomePage() {
                   ))}
                 </Swiper>
               </div>
-              <h2 className="text-4xl font-bold mb-4 text-white">Logo UKM</h2>
+              <h2 className="text-4xl font-bold mb-4 text-black gradient-text">Logo UKM</h2>
               <div className="overflow-hidden w-full mb-8">
                 <Swiper
                   slidesPerView={6}
@@ -193,7 +209,7 @@ export default function HomePage() {
                       ?.logos || []
                   ).map((logo, idx) => (
                     <SwiperSlide key={logo + "-" + idx}>
-                      <img
+                      <ImageOptimizer
                         src={`/images/Logo UKM/${logo}`}
                         alt={logo}
                         className="h-40 w-auto rounded-xl p-2"
